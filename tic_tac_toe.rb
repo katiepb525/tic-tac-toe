@@ -33,6 +33,28 @@ end
 
 # class that creates instance of a new game
 class NewGame
+  def initialize(player1, player2, grid)
+    @player1 = player1
+    @player2 = player2,
+               @grid = grid
+  end
+
+  # play a whole game
+  def play_game; end
+
+  # play a single round
+  def play_round(current_player)
+    puts "#{current_player.name}, it's your turn! place your symbol.."
+    @grid.display_board
+    choice = (gets.chomp.to_i - 1)
+    update_square(choice, current_player)
+    @grid.display_board
+  end
+
+  # pick a square with the current player's choice
+  def update_square(choice, current_player)
+    @grid.place[choice] = current_player.symbol
+  end
 end
 
 # get name of first player
@@ -48,4 +70,6 @@ p2_name = gets.chomp
 p2 = Player.new(p2_name, 'O')
 
 grid = Grid.new
-grid.display_board
+
+game = NewGame.new(p1, p2, grid)
+game.play_round(p1)
