@@ -2,6 +2,8 @@
 
 # class that creates player instance
 class Player
+  attr_reader :name, :symbol
+
   def initialize(name, symbol)
     # whats the player's name?
     @name = name
@@ -12,6 +14,8 @@ end
 
 # class that creates grid instance
 class Grid
+  attr_accessor :place
+
   def initialize
     # array to track of places Xs and Os
     @place = Array.new(9) { |n| n + 1 }
