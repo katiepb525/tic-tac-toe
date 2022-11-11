@@ -13,10 +13,17 @@ end
 # class that creates grid instance
 class Grid
   def initialize
-    # grid to be displayed
-    @display_grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-    # grid to keep track of Xs and Os
-    @curr_game = [[nil, nil, nil], [nil, nil, nil], [nil, nil, nil]]
+    # array to track of places Xs and Os
+    @place = Array.new(9) { |n| n + 1 }
+  end
+
+  def display_board
+    puts "\n
+          #{place[0]} | #{place[1]} | #{place[2]}\n
+          - + - + -\n
+          #{place[3]} | #{place[4]} | #{place[5]} \n
+          - + - + -\n
+          #{place[6]} | #{place[7]} | #{place[8]}"
   end
 end
 
@@ -35,3 +42,6 @@ p1 = Player.new(p1_name, 'X')
 puts 'player 2, enter your name!'
 p2_name = gets.chomp
 p2 = Player.new(p2_name, 'O')
+
+grid = Grid.new
+grid.display_board
