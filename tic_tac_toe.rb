@@ -22,9 +22,16 @@ end
 
 # class that creates instance of a new game
 class NewGame
-  def initialize(player1, player2, game_grid)
-    @player1 = player1
-    @player2 = player2
-    @game_grid = game_grid
-  end
 end
+
+# get name of first player
+puts 'player 1, enter your name!'
+p1_name = gets.chomp
+puts 'enter your symbol:'
+p1_symbol = gets.chomp
+p1 = Player.new(p1_name, 'X')
+
+# get name of second player
+puts 'player 2, enter your name!'
+p2_name = gets.chomp
+p2 = Player.new(p2_name, 'O')
