@@ -2,11 +2,11 @@
 
 # class that creates player instance
 class Player
-  def initialize(name, x_or_o)
+  def initialize(name, symbol)
     # whats the player's name?
     @name = name
     # are they using 'X' or 'O'?
-    @x_or_o = x_or_o
+    @symbol = symbol
   end
 end
 
