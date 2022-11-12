@@ -75,6 +75,53 @@ class NewGame
     @grid.display_board
   end
 
+  # check if current player won ROW after placing their symbol
+  def won_row?(current_player)
+    if @grid.place[0..2].all? { |place| place == current_player.symbol }
+      true
+    elsif @grid.place[3..5].all? { |place| place == current_player.symbol }
+      true
+    elsif @grid.place[6..9].all? { |place| place == current_player.symbol }
+      true
+    else
+      false
+    end
+  end
+
+  # check if current player won COLUMN after placing their symbol
+  def won_column?(current_player)
+    binding.pry
+    row1 = [@grid.place[0], @grid.place[3], @grid.place[6]]
+    row2 = [@grid.place[1], @grid.place[4], @grid.place[7]]
+    row3 = [@grid.place[2], @grid.place[5], @grid.place[8]]
+    if row1.all? { |place| place == current_player.symbol }
+      true
+    elsif row2.all? { |place| place == current_player.symbol }
+      true
+    elsif row3.all? { |place| place == current_player.symbol }
+      true
+    end
+  end
+
+  # check if current player won DIAGNOAL after placing their symbol
+  def won_diag?(current_player)
+    diag1 = [@grid.place[0], @grid.place[4], @grid.place[8]]
+    diag2 = [@grid.place[6], @grid.place[4], @grid.place[2]]
+    if diag1.all? { |place| place == current_player.symbol }
+      true
+    elsif diag2.all? { |place| place == current_player.symbol }
+      true
+    end
+  end
+
+  # check if all places are filled with a symbol (to declare a tie)
+  def tie?
+    return unless @grid.place.all? { |place| %w[X O].include?(place) }
+
+    puts 'it was a tie!'
+    @game_end = true
+  end
+
   # pick a square with the current player's choice
   def update_square(choice, current_player)
     @grid.place[choice] = current_player.symbol
