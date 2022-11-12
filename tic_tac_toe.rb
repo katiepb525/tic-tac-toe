@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry-byebug'
-
 # class that creates player instance
 class Player
   attr_reader :name, :symbol
@@ -106,7 +104,6 @@ class NewGame
 
   # check if current player won COLUMN after placing their symbol
   def won_column?(current_player)
-    binding.pry
     row1 = [@grid.place[0], @grid.place[3], @grid.place[6]]
     row2 = [@grid.place[1], @grid.place[4], @grid.place[7]]
     row3 = [@grid.place[2], @grid.place[5], @grid.place[8]]
