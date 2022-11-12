@@ -41,7 +41,30 @@ class NewGame
   end
 
   # play a whole game
-  def play_game; end
+  def play_game
+    puts 'game start!'
+
+    # loop until win or tie condition is met. if condition is met, announce result.
+
+    until @game_end == true
+      binding.pry
+      play_round(@player1)
+      player_won?(@player1)
+      tie?
+      play_round(@player2)
+      player_won?(@player2)
+      tie?
+    end
+  end
+
+  # if player won row, column, or diag..
+  def player_won?(current_player)
+    return unless won_row?(current_player) == true || won_column?(current_player) == true
+
+    puts "#{current_player} won!"
+    puts 'end game!'
+    @game_end = true
+  end
 
   # play a single round
   def play_round(current_player)
