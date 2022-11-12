@@ -3,4 +3,4 @@
 My tic tac toe project for TOP.
 
 Known issues:
-If you press "enter" on your turn your turn will be skipped.
+If you press "enter" on your turn your turn will be skipped (well, that's just punishment for rushing!).
