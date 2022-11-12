@@ -35,8 +35,9 @@ end
 class NewGame
   def initialize(player1, player2, grid)
     @player1 = player1
-    @player2 = player2,
-               @grid = grid
+    @player2 = player2
+    @grid = grid
+    @game_end = false
   end
 
   # play a whole game
