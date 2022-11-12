@@ -49,13 +49,15 @@ class NewGame
     # loop until win or tie condition is met. if condition is met, announce result.
 
     until @game_end == true
-      binding.pry
       play_round(@player1)
       player_won?(@player1)
       tie?
+      break if @game_end == true
+
       play_round(@player2)
       player_won?(@player2)
       tie?
+
     end
   end
 
