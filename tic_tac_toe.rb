@@ -65,7 +65,7 @@ class NewGame
   def player_won?(current_player)
     return unless won_row?(current_player) == true || won_column?(current_player) == true
 
-    puts "#{current_player} won!"
+    puts "#{current_player.name} won!"
     puts 'end game!'
     @game_end = true
   end
