@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'pry-byebug'
+
 # class that creates player instance
 class Player
   attr_reader :name, :symbol
