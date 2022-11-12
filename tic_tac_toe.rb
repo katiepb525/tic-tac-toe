@@ -75,7 +75,17 @@ class NewGame
     puts "#{current_player.name}, it's your turn! place your symbol.."
     @grid.display_board
     choice = (gets.chomp.to_i - 1)
+
+    # check if chosen spot is already taken
+    if @grid.place[choice] == 'X' || @grid.place[choice] == 'O'
+      # loop until choice is NOT X AND is NOT O
+      until @grid.place[choice] != 'X' && @grid.place[choice] != 'O'
+        puts 'pick an available spot please!'
+        choice = (gets.chomp.to_i - 1)
+      end
+    end
     update_square(choice, current_player)
+
     @grid.display_board
   end
 
