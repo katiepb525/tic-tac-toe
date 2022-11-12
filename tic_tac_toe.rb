@@ -151,7 +151,7 @@ p1 = Player.new(p1_name, 'X')
 
 # get name of second player
 puts 'player 2, enter your name! youll be O...'
-p2_name = 'dan'
+p2_name = gets.chomp
 p2 = Player.new(p2_name, 'O')
 
 grid = Grid.new
