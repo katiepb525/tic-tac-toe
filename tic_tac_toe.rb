@@ -63,7 +63,9 @@ class NewGame
 
   # if player won row, column, or diag..
   def player_won?(current_player)
-    return unless won_row?(current_player) == true || won_column?(current_player) == true
+    unless won_row?(current_player) == true || won_column?(current_player) == true || won_diag?(current_player) == true
+      return
+    end
 
     puts "#{current_player.name} won!"
     puts 'end game!'
