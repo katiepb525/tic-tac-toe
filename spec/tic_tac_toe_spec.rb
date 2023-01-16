@@ -111,4 +111,58 @@ describe NewGame do
       end
     end
   end
+
+  describe '#won_column?' do
+    # double for player class
+    let(:current_player){ double('player', name: 'Jessie', symbol: 'X')}
+    let(:second_player){ double('player', name: 'James')}
+
+    context 'all of the first column contains current player symbol' do
+      # double for grid class that has first column full of X's
+      let(:grid){double('grid', place: ['X',2,3,'X',5,6,'X',8,9])}
+
+      # initialize subject var
+      subject(:won_column){described_class.new(current_player, second_player, grid)}
+
+      it 'returns true' do
+        expect(won_column.won_column?(current_player)).to be(true)
+      end
+    end
+
+    context 'all of the second column contains current player symbol' do
+      # double for grid class that has first column full of X's
+      let(:grid){double('grid', place: [1,'X',3,4,'X',6,7,'X',9])}
+
+      # initialize subject var
+      subject(:won_column){described_class.new(current_player, second_player, grid)}
+
+      it 'returns true' do
+        expect(won_column.won_column?(current_player)).to be(true)
+      end
+    end
+    
+    context 'all of the third column contains current player symbol' do
+      # double for grid class that has first column full of X's
+      let(:grid){double('grid', place: [1,2,'X',4,5,'X',7,8,'X'])}
+
+      # initialize subject var
+      subject(:won_column){described_class.new(current_player, second_player, grid)}
+
+      it 'returns true' do
+        expect(won_column.won_column?(current_player)).to be(true)
+      end
+    end
+
+    context 'none of the columns contain current player symbol consecutively' do
+      # double for grid class that does not have winning column
+      let(:grid){double('grid', place: ['O',2,'O',4,5,'X',7,8,'X'])}
+
+      # initialize subject var
+      subject(:won_column){described_class.new(current_player, second_player, grid)}
+
+      it 'does not return true' do
+        expect(won_column.won_column?(current_player)).not_to be(true)
+      end
+    end
+  end
 end
