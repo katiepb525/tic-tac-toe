@@ -160,8 +160,8 @@ describe NewGame do
       # initialize subject var
       subject(:won_column){described_class.new(current_player, second_player, grid)}
 
-      it 'does not return true' do
-        expect(won_column.won_column?(current_player)).not_to be(true)
+      it 'returns nil' do
+        expect(won_column.won_column?(current_player)).to be_nil
       end
     end
   end
