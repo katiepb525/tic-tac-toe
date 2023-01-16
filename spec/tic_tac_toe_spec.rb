@@ -60,4 +60,55 @@ describe NewGame do
     end
   end
 
+  describe '#won_row?' do
+    # double for player class
+    let(:current_player){ double('player', name: 'Jessie', symbol: 'X')}
+    let(:second_player){ double('player', name: 'James', symbol: 'O')}
+
+    context 'all of first row contains current players symbol' do
+      # double for grid class with first row full of X's
+      let(:grid){double('grid', place: ['X','X','X',4,5,6,7,8,9])}
+      # initialize subject var
+      subject(:won_row){described_class.new(current_player, second_player, grid)}
+
+      it 'returns true' do
+        expect(won_row.won_row?(current_player)).to be(true)
+      end
+    end
+
+    context 'all of second row contains current players symbol' do
+      # double for grid class with second row full of X's
+      let(:grid){double('grid', place: [1,2,3,'X','X','X',7,8,9])}
+      # initialize subject var
+      subject(:won_row){described_class.new(current_player, second_player, grid)}
+
+      it 'returns true' do
+        expect(won_row.won_row?(current_player)).to be(true)
+      end
+    end
+
+    context 'all of third row contains current players symbol' do
+      # double for grid class with third row full of X's
+      let(:grid){double('grid', place: [1,2,3,4,5,6,'X','X','X'])}
+      
+      # initialize subject var
+      subject(:won_row){described_class.new(current_player, second_player, grid)}
+
+      it 'returns true' do
+        expect(won_row.won_row?(current_player)).to be(true)
+      end
+    end
+
+    context 'no winning rows on the grid' do
+      # double for grid class that has no winning rows
+      let(:grid){double('grid', place: [1,2,'O',4,5,6,'O','X','X'])}
+      
+      # initialize subject var
+      subject(:won_row){described_class.new(current_player, second_player, grid)}
+
+      it 'returns false' do
+        expect(won_row.won_row?(current_player)).to be(false)
+      end
+    end
+  end
 end
