@@ -141,17 +141,17 @@ class NewGame
   end
 end
 
-# get name of first player
-puts 'player 1, enter your name! youll be X...'
-p1_name = gets.chomp
-p1 = Player.new(p1_name, 'X')
+# # get name of first player
+# puts 'player 1, enter your name! youll be X...'
+# p1_name = gets.chomp
+# p1 = Player.new(p1_name, 'X')
 
-# get name of second player
-puts 'player 2, enter your name! youll be O...'
-p2_name = gets.chomp
-p2 = Player.new(p2_name, 'O')
+# # get name of second player
+# puts 'player 2, enter your name! youll be O...'
+# p2_name = gets.chomp
+# p2 = Player.new(p2_name, 'O')
 
-grid = Grid.new
+# grid = Grid.new
 
-game = NewGame.new(p1, p2, grid)
-game.play_game
+# game = NewGame.new(p1, p2, grid)
+# game.play_game
