@@ -207,4 +207,39 @@ describe NewGame do
       end
     end
   end
+
+  describe '#tie?' do
+    # double for player class
+    let(:current_player){ double('player', name: 'Jessie', symbol: 'X')}
+    let(:second_player){ double('player', name: 'James', symbol: '0')}
+
+    context 'grid is fully marked' do
+      # double for fully marked grid
+      let(:grid){double('grid', place: ['X','X','O','O','X','O','X','O','O'])}
+     
+      # initialize subject var
+      subject(:tie){described_class.new(current_player, second_player, grid)}
+
+      it 'puts receives message' do
+        expect(tie).to receive(:puts).with('it was a tie!')
+        tie.tie?
+      end
+
+      it 'changes game_end to true' do
+        expect{tie.tie?}.to change{tie.instance_variable_get(:@game_end)}.to(true)
+      end
+    end
+
+    context 'grid is NOT fully marked' do
+      # double for not fully marked grid
+      let(:grid){double('grid', place: ['X','X',2,'O','X','O',6,'O','O'])}
+
+      # initialize subject var
+      subject(:tie){described_class.new(current_player, second_player, grid)}
+
+      it 'returns nil' do
+        expect(tie.tie?).to be_nil
+      end
+    end
+  end
 end
