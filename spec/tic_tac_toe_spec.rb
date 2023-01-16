@@ -242,4 +242,21 @@ describe NewGame do
       end
     end
   end
+
+  describe '#update_square' do
+    # double for player class
+    let(:current_player){ double('player', name: 'Jessie', symbol: 'X')}
+    let(:second_player){ double('player', name: 'James', symbol: 'O')}
+    
+    # double for grid class
+    let(:grid){double('grid', place: [1,2,3,4,5,6,7,8,9])}
+
+    # initialize subject var
+    subject(:game){described_class.new(current_player, second_player, grid)}
+
+    it 'updates grid.place[index] with current players symbol' do
+      index = 1
+      expect{game.update_square(index, current_player)}.to change{grid.place[1]}.to eq("X")
+    end
+  end
 end
