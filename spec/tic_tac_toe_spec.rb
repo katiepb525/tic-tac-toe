@@ -1,6 +1,9 @@
 require './lib/tic_tac_toe'
 
 describe NewGame do
+
+  ######### tests for win conditions #########
+
   describe '#player_won?' do
     # double for player class
     let(:current_player){ double('player', name: 'Jessie')}
@@ -242,6 +245,8 @@ describe NewGame do
       end
     end
   end
+
+  ####### tests for gameplay #######
 
   describe '#update_square' do
     # double for player class
