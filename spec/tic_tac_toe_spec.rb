@@ -252,7 +252,7 @@ describe NewGame do
     # double for player class
     let(:current_player){ double('player', name: 'Jessie', symbol: 'X')}
     let(:second_player){ double('player', name: 'James', symbol: 'O')}
-    
+
     # double for grid class
     let(:grid){double('grid', place: [1,2,3,4,5,6,7,8,9])}
 
@@ -263,5 +263,57 @@ describe NewGame do
       index = 1
       expect{game.update_square(index, current_player)}.to change{grid.place[1]}.to eq("X")
     end
+  end
+
+  describe '#play_round' do
+    # double for player class
+    let(:current_player){ double('player', name: 'Jessie', symbol: 'X')}
+    let(:second_player){ double('player', name: 'James', symbol: 'O')}
+
+    # double for grid class
+    let(:grid){double('grid', place: [1,2,3,4,5,6,7,8,9])}
+
+    # initialize subject var
+    subject(:game){described_class.new(current_player, second_player, grid)}
+
+    context 'at the start of the game' do
+      before do
+        allow(grid).to receive(:display_board).and_return(true)
+      end
+
+      it 'displays the board' do
+        expect(grid).to receive(:display_board)
+        game.play_round(current_player)
+      end
+      
+      # it 'records player choice' do
+      #   # refactor choice to be an instance variable
+      # end  
+    
+    end
+
+    # context 'chosen spot by player is not taken' do
+    #   it 'checks if spot is taken and returns false' do
+    #   end
+
+    #   it 'updates choice' do
+    #     # refactor choice
+    #   end
+
+    #   it 'updates square with chosen spot' do
+    #   end
+    # end
+
+    # context 'chosen spot by player IS taken' do
+    #   it 'loops until player chooses open spot, then records choice' do
+    #   end
+
+    #   it 'updates choice' do
+    #     # refactor choice
+    #   end
+
+    #   it 'updates square with chosen spot' do
+    #   end
+    # end
   end
 end
