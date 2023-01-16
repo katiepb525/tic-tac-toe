@@ -8,7 +8,7 @@ describe NewGame do
     # double for grid class
     let(:grid){double('grid')}
 
-    # initalize subject var
+    # initialize subject var
     subject(:won_game){described_class.new(current_player, second_player, grid)}
 
     context 'the player wins a row' do
