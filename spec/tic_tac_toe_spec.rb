@@ -165,4 +165,46 @@ describe NewGame do
       end
     end
   end
+
+  describe '#won_diag?' do
+    # double for player class
+    let(:current_player){ double('player', name: 'Jessie', symbol: 'X')}
+    let(:second_player){ double('player', name: 'James', symbol: '0')}
+
+    context 'first diagonal wins' do
+      # double for grid class that has first winning diagonal
+      let(:grid){double('grid', place: ['X',2,3,4,'X',6,7,8,'X'])}
+
+      # initialize subject var
+      subject(:won_diag){described_class.new(current_player, second_player, grid)}
+
+      it 'returns true' do
+        expect(won_diag.won_diag?(current_player)).to be(true)
+      end
+    end
+
+    context 'second diagonal wins' do
+      # double for grid class that has second winning diagonal
+      let(:grid){double('grid', place: [1,2,'X',4,'X',6,'X',8,9])}
+
+      # initialize subject var
+      subject(:won_diag){described_class.new(current_player, second_player, grid)}
+
+      it 'returns true' do
+        expect(won_diag.won_diag?(current_player)).to be(true)
+      end
+    end
+
+    context 'no diagonals win' do
+      # double for grid class that has no diagonals
+      let(:grid){double('grid', place: ['X',2,'O',4,'X',6,'X',8,9])}
+
+      # initialize subject var
+      subject(:won_diag){described_class.new(current_player, second_player, grid)}
+
+      it 'returns nil' do
+        expect(won_diag.won_diag?(current_player)).to be_nil
+      end
+    end
+  end
 end
