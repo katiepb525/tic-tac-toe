@@ -189,18 +189,17 @@ describe NewGame do
       game.play_round(current_player)
     end
 
-    # context 'chosen spot by player is not taken' do
-    #   it 'updates square with chosen spot' do
+    context 'chosen square IS taken' do
+      let(:grid_taken) {instance_double(Grid, place: [1,2,3,4,'X',6,7,8,9])}
+      before do
+        allow(grid).to receive(:display_board)
+        allow(game).to receive(:gets).and_return('5')
+      end
+      it 'loops until grid.place[choice] is not X or O' do
+        expect(grid_taken.place[4] == 'X').to be(true)
+        game.play_round(current_player)
+      end
+    end
 
-    #   end
-    # end
-
-    # context 'chosen spot by player IS taken' do
-    #   it 'loops until player chooses open spot, then records choice' do
-    #   end
-
-    #   it 'updates square with chosen spot' do
-    #   end
-    # end
   end
 end
