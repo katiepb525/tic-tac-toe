@@ -8,7 +8,7 @@ describe NewGame do
   let(:second_player) { double('player', name: 'James', symbol: 'O') }
 
   # double for grid class
-  let(:grid) { double('grid', place: [1, 2, 3, 4, 5, 6, 7, 8, 9]) }
+  let(:grid) { instance_double(Grid, place: [1, 2, 3, 4, 5, 6, 7, 8, 9]) }
 
   # initialize subject var
   subject(:game) { described_class.new(current_player, second_player, grid) }
@@ -55,7 +55,7 @@ describe NewGame do
 
   describe '#won_row?' do
     context 'all of first row contains current players symbol' do
-      let(:grid) { double('grid', place: ['X', 'X', 'X', 4, 5, 6, 7, 8, 9]) }
+      let(:grid) { instance_double(Grid, place: ['X', 'X', 'X', 4, 5, 6, 7, 8, 9]) }
 
       it 'returns true' do
         expect(game.won_row?(current_player)).to be(true)
@@ -63,7 +63,7 @@ describe NewGame do
     end
 
     context 'all of second row contains current players symbol' do
-      let(:grid) { double('grid', place: [1, 2, 3, 'X', 'X', 'X', 7, 8, 9]) }
+      let(:grid) { instance_double(Grid, place: [1, 2, 3, 'X', 'X', 'X', 7, 8, 9]) }
 
       it 'returns true' do
         expect(game.won_row?(current_player)).to be(true)
@@ -71,7 +71,7 @@ describe NewGame do
     end
 
     context 'all of third row contains current players symbol' do
-      let(:grid) { double('grid', place: [1, 2, 3, 4, 5, 6, 'X', 'X', 'X']) }
+      let(:grid) { instance_double(Grid, place: [1, 2, 3, 4, 5, 6, 'X', 'X', 'X']) }
 
       it 'returns true' do
         expect(game.won_row?(current_player)).to be(true)
@@ -79,7 +79,7 @@ describe NewGame do
     end
 
     context 'no winning rows on the grid' do
-      let(:grid) { double('grid', place: [1, 2, 'O', 4, 5, 6, 'O', 'X', 'X']) }
+      let(:grid) { instance_double(Grid, place: [1, 2, 'O', 4, 5, 6, 'O', 'X', 'X']) }
 
       it 'returns false' do
         expect(game.won_row?(current_player)).to be(false)
@@ -89,7 +89,7 @@ describe NewGame do
 
   describe '#won_column?' do
     context 'all of the first column contains current player symbol' do
-      let(:grid) { double('grid', place: ['X', 2, 3, 'X', 5, 6, 'X', 8, 9]) }
+      let(:grid) { instance_double(Grid, place: ['X', 2, 3, 'X', 5, 6, 'X', 8, 9]) }
 
       it 'returns true' do
         expect(game.won_column?(current_player)).to be(true)
@@ -97,7 +97,7 @@ describe NewGame do
     end
 
     context 'all of the second column contains current player symbol' do
-      let(:grid) { double('grid', place: [1, 'X', 3, 4, 'X', 6, 7, 'X', 9]) }
+      let(:grid) { instance_double(Grid, place: [1, 'X', 3, 4, 'X', 6, 7, 'X', 9]) }
 
       it 'returns true' do
         expect(game.won_column?(current_player)).to be(true)
@@ -105,7 +105,7 @@ describe NewGame do
     end
 
     context 'all of the third column contains current player symbol' do
-      let(:grid) { double('grid', place: [1, 2, 'X', 4, 5, 'X', 7, 8, 'X']) }
+      let(:grid) { instance_double(Grid, place: [1, 2, 'X', 4, 5, 'X', 7, 8, 'X']) }
 
       it 'returns true' do
         expect(game.won_column?(current_player)).to be(true)
@@ -113,7 +113,7 @@ describe NewGame do
     end
 
     context 'none of the columns contain current player symbol consecutively' do
-      let(:grid) { double('grid', place: ['O', 2, 'O', 4, 5, 'X', 7, 8, 'X']) }
+      let(:grid) { instance_double(Grid, place: ['O', 2, 'O', 4, 5, 'X', 7, 8, 'X']) }
 
       it 'returns nil' do
         expect(game.won_column?(current_player)).to be_nil
@@ -123,7 +123,7 @@ describe NewGame do
 
   describe '#won_diag?' do
     context 'first diagonal wins' do
-      let(:grid) { double('grid', place: ['X', 2, 3, 4, 'X', 6, 7, 8, 'X']) }
+      let(:grid) { instance_double(Grid, place: ['X', 2, 3, 4, 'X', 6, 7, 8, 'X']) }
 
       it 'returns true' do
         expect(game.won_diag?(current_player)).to be(true)
@@ -131,7 +131,7 @@ describe NewGame do
     end
 
     context 'second diagonal wins' do
-      let(:grid) { double('grid', place: [1, 2, 'X', 4, 'X', 6, 'X', 8, 9]) }
+      let(:grid) { instance_double(Grid, place: [1, 2, 'X', 4, 'X', 6, 'X', 8, 9]) }
 
       it 'returns true' do
         expect(game.won_diag?(current_player)).to be(true)
@@ -139,7 +139,7 @@ describe NewGame do
     end
 
     context 'no diagonals win' do
-      let(:grid) { double('grid', place: ['X', 2, 'O', 4, 'X', 6, 'X', 8, 9]) }
+      let(:grid) { instance_double(Grid, place: ['X', 2, 'O', 4, 'X', 6, 'X', 8, 9]) }
 
       it 'returns nil' do
         expect(game.won_diag?(current_player)).to be_nil
@@ -149,7 +149,7 @@ describe NewGame do
 
   describe '#tie?' do
     context 'grid is fully marked' do
-      let(:grid) { double('grid', place: %w[X X O O X O X O O]) }
+      let(:grid) { instance_double(Grid, place: %w[X X O O X O X O O]) }
 
       it 'puts receives message' do
         expect(game).to receive(:puts).with('it was a tie!')
@@ -162,7 +162,7 @@ describe NewGame do
     end
 
     context 'grid is NOT fully marked' do
-      let(:grid) { double('grid', place: ['X', 'X', 2, 'O', 'X', 'O', 6, 'O', 'O']) }
+      let(:grid) { instance_double(Grid, place: ['X', 'X', 2, 'O', 'X', 'O', 6, 'O', 'O']) }
 
       it 'returns nil' do
         expect(game.tie?).to be_nil
