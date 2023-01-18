@@ -13,6 +13,10 @@ describe NewGame do
   # initialize subject var
   subject(:game) { described_class.new(current_player, second_player, grid) }
 
+  before do
+    allow($stdout).to receive(:puts)
+  end
+
   ######### tests for win conditions #########
 
   describe '#player_won?' do
